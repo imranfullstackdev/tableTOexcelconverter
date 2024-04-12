@@ -9,6 +9,6 @@ Features:
 - Export selected rows to an Excel file.
 
 Installation:
-1. Clone the repository: git clone <repository_url>
-2. Navigate to the project directory: cd <project_directory>
+1. Clone the repository: git clone <https://github.com/imranfullstackdev/tableTOexcelconverter.git>
+2. Navigate to the project directory: cd <PURPLEPAM>
 3. Install dependencies: npm install
