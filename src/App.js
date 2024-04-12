@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import React, { useEffect, useMemo, useState } from 'react';
 import './App.css';
+import axios from 'axios';
+import MyTable from './Common/MyTable';
+import Loader from './Common/Loader ';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
+  const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const fetchData = async () => {
+    try {
+      setLoading(true)
+      const apiCall = await axios.get('https://dummyjson.com/products');
+      setData(apiCall.data.products)
+      setLoading(false)
+    } catch (error) {
+      console.log('Error fetching data:', error);
+      setLoading(false)
+    }
+  };
+
+  useEffect(() => {
+
+
+    fetchData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {loading && <Loader />}
+      <MyTable data={data} setLoading={setLoading} />
+    </>
   );
 }
 
